@@ -1,0 +1,38 @@
+<view class="page">
+  <view class="hero">
+    <view>
+      <view class="hero-date">{{dateText}}</view>
+      <view class="hero-sub">{{weekCn}} · 第 {{weekNum}} 周</view>
+    </view>
+    <view class="hero-badge">今日</view>
+  </view>
+
+  <view wx:if="{{banner}}" class="banner">{{banner}}</view>
+
+  <block wx:if="{{items.length}}">
+    <view
+      class="course-card {{item.status === 'done' ? 'is-done' : ''}}"
+      wx:for="{{items}}"
+      wx:key="id"
+      bindtap="openCourse"
+      data-id="{{item.id}}"
+    >
+      <view class="cc-bar" style="background: {{item.color}};"></view>
+      <view class="cc-main">
+        <view class="cc-name">{{item.name}}</view>
+        <view class="cc-meta">{{item.timeText}}</view>
+        <view class="cc-meta dim">{{item.location}}{{item.teacher ? ' · ' + item.teacher : ''}}</view>
+      </view>
+      <view class="cc-status s-{{item.status}}">{{item.statusText}}</view>
+    </view>
+    <view class="link-week" bindtap="goWeek">查看整周课表 ›</view>
+  </block>
+
+  <view wx:else class="card empty">
+    <view class="empty-ring"></view>
+    <view class="empty-title">{{emptyText}}</view>
+    <view class="empty-btn" bindtap="goEdit">添加课程</view>
+  </view>
+
+  <view class="fab" bindtap="goEdit">+</view>
+</view>

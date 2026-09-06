@@ -1,0 +1,81 @@
+<view class="page">
+  <view class="head">
+    <picker mode="selector" range="{{weekOptions}}" value="{{weekNum - 1}}" bindchange="onWeekPick">
+      <view class="head-title-wrap">
+        <view class="head-title">第 {{weekNum}} 周 <text class="caret">▾</text></view>
+        <view class="head-range">{{rangeText}}</view>
+      </view>
+    </picker>
+    <view class="head-right">
+      <view wx:if="{{showTodayBack}}" class="back-today" bindtap="backToThisWeek">本周</view>
+      <view class="add-btn" bindtap="addCourse">+</view>
+    </view>
+  </view>
+
+  <view wx:if="{{empty}}" class="card onboard">
+    <view class="onboard-title">还没有课程</view>
+    <view class="onboard-desc">可以自己动手添加，或先载入一份示例课表看看效果</view>
+    <view class="onboard-btns">
+      <view class="btn-ghost" bindtap="loadDemo">载入示例课表</view>
+      <view class="btn-primary" bindtap="addCourse">手动添加课程</view>
+    </view>
+  </view>
+
+  <view wx:else class="grid">
+    <view class="days-row">
+      <view class="corner"></view>
+      <view class="day-head {{todayIdx === index ? 'is-today' : ''}}" wx:for="{{dayHeads}}" wx:key="label">
+        <view class="day-name">{{item.label}}</view>
+        <view class="day-date">{{item.date}}</view>
+      </view>
+    </view>
+    <view class="body">
+      <view class="time-col">
+        <view class="time-cell" wx:for="{{sectionList}}" wx:key="n" style="height: {{rowH}}px;">
+          <view class="time-n">{{item.n}}</view>
+          <view class="time-t">{{item.t}}</view>
+        </view>
+      </view>
+      <view class="cols">
+        <view
+          class="col {{col.day - 1 === todayIdx ? 'is-today-col' : ''}}"
+          wx:for="{{grid}}"
+          wx:for-item="col"
+          wx:key="day"
+          data-day="{{col.day}}"
+          bindlongpress="onColLongPress"
+        >
+          <view
+            class="block"
+            wx:for="{{col.blocks}}"
+            wx:for-item="b"
+            wx:key="id"
+            style="top: {{b.top}}px; height: {{b.height}}px; background: {{b.color}};"
+            data-id="{{b.id}}"
+            bindtap="onBlockTap"
+            catchlongpress="noop"
+          >
+            <view class="block-name">{{b.name}}</view>
+            <view class="block-loc">{{b.location}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{detail}}" class="mask" bindtap="closeDetail">
+    <view class="sheet" catchtap="noop">
+      <view class="sheet-bar" style="background: {{detail.color}};"></view>
+      <view class="sheet-name">{{detail.name}}</view>
+      <view class="sheet-row"><text class="k">时间</text><text class="v">{{detail.timeText}}</text></view>
+      <view class="sheet-row"><text class="k">地点</text><text class="v">{{detail.location || '未填写'}}</text></view>
+      <view class="sheet-row"><text class="k">老师</text><text class="v">{{detail.teacher || '未填写'}}</text></view>
+      <view class="sheet-row"><text class="k">周次</text><text class="v">{{detail.weekText}}</text></view>
+      <view class="sheet-row" wx:if="{{detail.note}}"><text class="k">备注</text><text class="v">{{detail.note}}</text></view>
+      <view class="sheet-btns">
+        <view class="btn-danger half" bindtap="deleteDetail">删除</view>
+        <view class="btn-primary half" bindtap="editDetail">编辑</view>
+      </view>
+    </view>
+  </view>
+</view>

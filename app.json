@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/today/today",
+    "pages/week/week",
+    "pages/settings/settings",
+    "pages/edit/edit"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#4C7DFF",
+    "navigationBarTitleText": "小课表",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F5F6FA",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#9CA1AE",
+    "selectedColor": "#4C7DFF",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/today/today",
+        "text": "今日",
+        "iconPath": "assets/tabbar/today.png",
+        "selectedIconPath": "assets/tabbar/today-active.png"
+      },
+      {
+        "pagePath": "pages/week/week",
+        "text": "课程表",
+        "iconPath": "assets/tabbar/week.png",
+        "selectedIconPath": "assets/tabbar/week-active.png"
+      },
+      {
+        "pagePath": "pages/settings/settings",
+        "text": "设置",
+        "iconPath": "assets/tabbar/settings.png",
+        "selectedIconPath": "assets/tabbar/settings-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

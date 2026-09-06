@@ -1,0 +1,153 @@
+.page {
+  padding: 24rpx 24rpx 80rpx;
+}
+
+.form {
+  padding: 8rpx 28rpx;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid #F2F4F8;
+}
+
+.cell-label {
+  width: 180rpx;
+  color: #6B7488;
+  font-size: 28rpx;
+  flex-shrink: 0;
+}
+
+.cell-input {
+  flex: 1;
+  font-size: 30rpx;
+  text-align: right;
+}
+
+.cell-value {
+  flex: 1;
+  font-size: 30rpx;
+  text-align: right;
+}
+
+.cell-value.preview {
+  color: #4C7DFF;
+}
+
+.week-block {
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid #F2F4F8;
+}
+
+.week-title {
+  font-size: 28rpx;
+  color: #6B7488;
+}
+
+.week-quick {
+  display: flex;
+  margin-top: 20rpx;
+  flex-wrap: wrap;
+}
+
+.quick-btn {
+  font-size: 24rpx;
+  color: #4C7DFF;
+  background: #EEF2FF;
+  border-radius: 24rpx;
+  padding: 8rpx 22rpx;
+  margin: 0 14rpx 12rpx 0;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8rpx;
+}
+
+.chip {
+  min-width: 64rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #6B7488;
+  background: #F3F5F9;
+  border-radius: 12rpx;
+  padding: 10rpx 0;
+  margin: 0 12rpx 12rpx 0;
+  box-sizing: border-box;
+  border: 2rpx solid transparent;
+}
+
+.chip.on {
+  background: #EBF1FF;
+  color: #4C7DFF;
+  border-color: #4C7DFF;
+  font-weight: 500;
+}
+
+.week-preview {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #4C7DFF;
+}
+
+.color-cell {
+  flex-wrap: wrap;
+}
+
+.swatches {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.swatch {
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 50%;
+  margin: 8rpx 0 0 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.swatch.active {
+  border: 4rpx solid #FFFFFF;
+  box-shadow: 0 0 0 3rpx rgba(31, 36, 48, 0.18);
+  transform: scale(1.1);
+}
+
+.check {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background: #FFFFFF;
+}
+
+.note-cell {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.note-area {
+  width: 100%;
+  margin-top: 16rpx;
+  font-size: 28rpx;
+  min-height: 60rpx;
+}
+
+.save-btn {
+  margin-top: 40rpx;
+}
+
+.del-btn {
+  margin-top: 24rpx;
+  text-align: center;
+  color: #FA5151;
+  font-size: 28rpx;
+  padding: 16rpx;
+}

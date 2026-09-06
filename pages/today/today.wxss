@@ -1,0 +1,163 @@
+.page {
+  padding: 24rpx 24rpx 200rpx;
+}
+
+.hero {
+  background: linear-gradient(135deg, #4C7DFF 0%, #6FA0FF 100%);
+  border-radius: 28rpx;
+  padding: 36rpx 32rpx;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-date {
+  font-size: 40rpx;
+  font-weight: 600;
+}
+
+.hero-sub {
+  font-size: 26rpx;
+  opacity: 0.85;
+  margin-top: 8rpx;
+}
+
+.hero-badge {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 24rpx;
+  padding: 8rpx 24rpx;
+  font-size: 24rpx;
+}
+
+.banner {
+  margin-top: 20rpx;
+  background: #FFF6E5;
+  color: #B25E00;
+  border-radius: 20rpx;
+  padding: 20rpx 24rpx;
+  font-size: 26rpx;
+  line-height: 1.5;
+}
+
+.course-card {
+  display: flex;
+  align-items: stretch;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  margin-top: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(31, 36, 48, 0.05);
+}
+
+.is-done {
+  opacity: 0.55;
+}
+
+.cc-bar {
+  width: 10rpx;
+  flex-shrink: 0;
+}
+
+.cc-main {
+  flex: 1;
+  padding: 24rpx;
+}
+
+.cc-name {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.cc-meta {
+  font-size: 24rpx;
+  color: #6B7488;
+  margin-top: 8rpx;
+}
+
+.cc-meta.dim {
+  color: #9AA1AE;
+}
+
+.cc-status {
+  align-self: center;
+  margin-right: 24rpx;
+  font-size: 22rpx;
+  border-radius: 20rpx;
+  padding: 6rpx 16rpx;
+  flex-shrink: 0;
+}
+
+.s-doing {
+  background: #E8F7EF;
+  color: #00B578;
+}
+
+.s-soon {
+  background: #EBF1FF;
+  color: #4C7DFF;
+}
+
+.s-before {
+  background: #F0F2F7;
+  color: #8A93A6;
+}
+
+.s-done {
+  background: #F0F2F7;
+  color: #9AA1AE;
+}
+
+.link-week {
+  text-align: center;
+  color: #4C7DFF;
+  font-size: 26rpx;
+  padding: 28rpx 0 8rpx;
+}
+
+.empty {
+  margin-top: 20rpx;
+  padding: 80rpx 40rpx;
+  text-align: center;
+}
+
+.empty-ring {
+  width: 96rpx;
+  height: 96rpx;
+  border: 10rpx solid #E3E9FF;
+  border-radius: 50%;
+  margin: 0 auto 28rpx;
+}
+
+.empty-title {
+  color: #8A93A6;
+  font-size: 28rpx;
+}
+
+.empty-btn {
+  margin: 40rpx auto 0;
+  width: 280rpx;
+  background: #EEF2FF;
+  color: #4C7DFF;
+  border-radius: 44rpx;
+  padding: 18rpx 0;
+  font-size: 28rpx;
+}
+
+.fab {
+  position: fixed;
+  right: 40rpx;
+  bottom: 140rpx;
+  width: 104rpx;
+  height: 104rpx;
+  background: #4C7DFF;
+  color: #FFFFFF;
+  border-radius: 50%;
+  font-size: 56rpx;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12rpx 32rpx rgba(76, 125, 255, 0.4);
+  z-index: 10;
+}

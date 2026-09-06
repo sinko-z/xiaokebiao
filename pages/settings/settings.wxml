@@ -1,0 +1,53 @@
+<view class="page">
+  <view class="sec-title">学期</view>
+  <view class="card group">
+    <picker class="row" mode="date" value="{{semesterStart}}" bindchange="onSemesterStart">
+      <view class="row-label">开学日期（自动对齐周一）</view>
+      <view class="row-value">{{semesterStart}}</view>
+    </picker>
+    <picker class="row" mode="selector" range="{{maxWeekOptions}}" value="{{maxWeek - 16}}" bindchange="onMaxWeek">
+      <view class="row-label">学期总周数</view>
+      <view class="row-value">{{maxWeek}} 周</view>
+    </picker>
+  </view>
+
+  <view class="sec-title">节次时间</view>
+  <view class="card group">
+    <view class="st-row" wx:for="{{sectionTimes}}" wx:key="n">
+      <view class="st-label">第 {{item.n}} 节</view>
+      <picker mode="time" value="{{item.start}}" data-i="{{index}}" bindchange="onTimeStart">
+        <view class="st-time">{{item.start}}</view>
+      </picker>
+      <view class="st-sep">-</view>
+      <picker mode="time" value="{{item.end}}" data-i="{{index}}" bindchange="onTimeEnd">
+        <view class="st-time">{{item.end}}</view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="sec-title">上课提醒</view>
+  <view class="card group">
+    <view class="row">
+      <view class="row-label">开启提醒</view>
+      <switch checked="{{remindEnabled}}" color="#4C7DFF" bindchange="onRemindToggle" />
+    </view>
+    <picker class="row" mode="selector" range="{{remindOptions}}" value="{{remindIdx}}" bindchange="onRemindMinutes">
+      <view class="row-label">提前提醒</view>
+      <view class="row-value">上课前 {{remindMinutes}} 分钟</view>
+    </picker>
+    <view class="tip">打开小程序时会提示临近的课程。如需微信服务通知推送，需要服务器或云开发支持。</view>
+  </view>
+
+  <view class="sec-title">数据</view>
+  <view class="card group">
+    <view class="row">
+      <view class="row-label">当前课程数</view>
+      <view class="row-value">{{coursesCount}} 门</view>
+    </view>
+    <view class="act-btn" bindtap="exportData">导出课表（复制到剪贴板）</view>
+    <view class="act-btn" bindtap="importData">从剪贴板导入</view>
+    <view class="act-btn danger" bindtap="clearAll">清空全部课程</view>
+  </view>
+
+  <view class="about">小课表 v1.0.0 · 本地存储版</view>
+</view>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="2tXSwJ4JzJW6gpNOGOfY7L">
+<head data-page-node-id="czAaFCLGretDHl1rNCIEij">
+<meta charset="UTF-8" data-page-node-id="0pQiRsxk1ZZDxPzu7awlMF" />
+<meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="4kRkrTkHJoYJyfdYBpTaGo" />
+<title>小课表 · 界面预览</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #E9EDF4; font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; color: #1F2430; padding: 40px 24px 64px; }
+  h1 { font-size: 20px; margin-bottom: 6px; }
+  .sub { color: #8A93A6; font-size: 13px; margin-bottom: 28px; line-height: 1.7; }
+  .frames { display: flex; gap: 40px; flex-wrap: wrap; align-items: flex-start; }
+  .frame-label { text-align: center; color: #6B7488; font-size: 13px; margin-top: 14px; }
+  .phone { width: 375px; height: 740px; background: #F5F6FA; border-radius: 40px; overflow: hidden; box-shadow: 0 24px 60px rgba(31,36,48,.16); border: 8px solid #1F2430; display: flex; flex-direction: column; position: relative; flex-shrink: 0; }
+  .nav { background: #4C7DFF; color: #fff; text-align: center; font-size: 16px; padding: 15px 0 12px; font-weight: 500; flex-shrink: 0; }
+  .content { flex: 1; overflow: hidden; padding: 12px; position: relative; }
+  .tabbar { height: 56px; background: #fff; border-top: 1px solid #EEF1F6; display: flex; flex-shrink: 0; }
+  .tab { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; color: #9CA1AE; }
+  .tab.active { color: #4C7DFF; }
+  .ico { width: 20px; height: 20px; position: relative; display: block; }
+  .ico.clock { border: 2.5px solid currentColor; border-radius: 50%; }
+  .ico.clock::before { content: ''; position: absolute; left: 7.5px; top: 3px; width: 2.5px; height: 7px; background: currentColor; border-radius: 2px; }
+  .ico.cal { border: 2.5px solid currentColor; border-radius: 5px; }
+  .ico.cal::before { content: ''; position: absolute; left: 2px; right: 2px; top: 5px; height: 2px; background: currentColor; }
+  .ico.gear { border: 2.5px solid currentColor; border-radius: 50%; }
+  .ico.gear::before { content: ''; position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px 0 0 -3px; background: currentColor; border-radius: 50%; }
+
+  .hero { background: linear-gradient(135deg, #4C7DFF, #6FA0FF); color: #fff; border-radius: 16px; padding: 20px 18px; display: flex; justify-content: space-between; align-items: center; }
+  .hero .d { font-size: 22px; font-weight: 600; }
+  .hero .s { font-size: 13px; opacity: .85; margin-top: 4px; }
+  .hero .badge { background: rgba(255,255,255,.2); border-radius: 14px; padding: 4px 14px; font-size: 12px; }
+  .banner { margin-top: 10px; background: #FFF6E5; color: #B25E00; border-radius: 12px; padding: 10px 14px; font-size: 13px; }
+  .cc { display: flex; background: #fff; border-radius: 14px; margin-top: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(31,36,48,.05); }
+  .cc .bar { width: 5px; flex-shrink: 0; }
+  .cc .m { flex: 1; padding: 13px 14px; }
+  .cc .n { font-size: 16px; font-weight: 600; }
+  .cc .meta { font-size: 12px; color: #6B7488; margin-top: 4px; }
+  .cc .meta.dim { color: #9AA1AE; }
+  .cc .st { align-self: center; margin-right: 14px; font-size: 11px; border-radius: 10px; padding: 3px 8px; flex-shrink: 0; }
+  .st.doing { background: #E8F7EF; color: #00B578; }
+  .st.before { background: #EBF1FF; color: #4C7DFF; }
+  .st.done { background: #F0F2F7; color: #9AA1AE; }
+  .cc.dimmed { opacity: .55; }
+  .link { text-align: center; color: #4C7DFF; font-size: 13px; padding: 14px 0 4px; }
+  .fab { position: absolute; right: 18px; bottom: 18px; width: 52px; height: 52px; background: #4C7DFF; color: #fff; border-radius: 50%; font-size: 30px; font-weight: 300; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(76,125,255,.4); }
+
+  .wkhead { display: flex; justify-content: space-between; align-items: center; padding: 2px 4px 10px; }
+  .wkhead .t { font-size: 17px; font-weight: 600; }
+  .wkhead .r { font-size: 11px; color: #9AA1AE; margin-top: 2px; }
+  .wkhead .add { width: 30px; height: 30px; border-radius: 50%; background: #4C7DFF; color: #fff; font-size: 20px; font-weight: 300; display: flex; align-items: center; justify-content: center; }
+  .grid { background: #fff; border-radius: 14px; padding: 0 6px 6px; box-shadow: 0 2px 10px rgba(31,36,48,.05); }
+  .days { display: flex; border-bottom: 1px solid #EEF1F6; }
+  .corner { width: 32px; flex-shrink: 0; }
+  .dayh { flex: 1; text-align: center; padding: 8px 0 6px; }
+  .dayh .dn { font-size: 12px; color: #6B7488; }
+  .dayh .dd { font-size: 10px; color: #9AA1AE; margin-top: 2px; }
+  .dayh.today .dn, .dayh.today .dd { color: #4C7DFF; font-weight: 600; }
+  .wkbody { display: flex; }
+  .times { width: 32px; flex-shrink: 0; }
+  .tcell { height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .tcell .tn { font-size: 10px; color: #9AA1AE; }
+  .tcell .tt { font-size: 8px; color: #C0C6D1; }
+  .cols { flex: 1; display: flex; }
+  .col { flex: 1; position: relative; border-right: 1px solid #F2F4F8; background-image: linear-gradient(to bottom, #F2F4F8 1px, transparent 1px); background-size: 100% 52px; }
+  .col:last-child { border-right: none; }
+  .col.today { background-color: #F7F9FF; }
+  .blk { position: absolute; left: 2px; right: 2px; border-radius: 6px; padding: 4px 5px; color: #fff; overflow: hidden; }
+  .blk .bn { font-size: 11px; font-weight: 500; line-height: 1.25; }
+  .blk .bl { font-size: 9px; opacity: .85; }
+
+  .form { background: #fff; border-radius: 14px; padding: 4px 14px; box-shadow: 0 2px 10px rgba(31,36,48,.05); }
+  .cell { display: flex; align-items: center; padding: 13px 0; border-bottom: 1px solid #F2F4F8; }
+  .cell .lb { width: 90px; color: #6B7488; font-size: 14px; flex-shrink: 0; }
+  .cell .ph { color: #B6BCC8; }
+  .cell .val { flex: 1; text-align: right; font-size: 14px; }
+  .wk { padding: 14px 0; border-bottom: 1px solid #F2F4F8; }
+  .wk .tt { font-size: 14px; color: #6B7488; }
+  .quick { display: flex; gap: 7px; margin-top: 10px; flex-wrap: wrap; }
+  .quick span { font-size: 12px; color: #4C7DFF; background: #EEF2FF; border-radius: 12px; padding: 4px 11px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .chips span { min-width: 30px; text-align: center; font-size: 12px; color: #6B7488; background: #F3F5F9; border-radius: 6px; padding: 5px 0; border: 1.5px solid transparent; }
+  .chips span.on { background: #EBF1FF; color: #4C7DFF; border-color: #4C7DFF; font-weight: 500; }
+  .wk .prev { margin-top: 10px; font-size: 12px; color: #4C7DFF; }
+  .sw { display: flex; gap: 8px; flex: 1; justify-content: flex-end; flex-wrap: wrap; }
+  .sw i { width: 26px; height: 26px; border-radius: 50%; display: block; }
+  .savebtn { margin: 20px 4px 0; background: #4C7DFF; color: #fff; border-radius: 24px; text-align: center; padding: 13px 0; font-size: 16px; }
+  .note { color: #6B7488; font-size: 13px; line-height: 1.9; margin-top: 36px; max-width: 900px; }
+  .note b { color: #1F2430; }
+</style>
+</head>
+<body data-page-node-id="GmsRHHX7K1y0SGy44FT2Ka">
+<h1 data-page-node-id="nvsGHGjpVxrrAYM5k6ZkLT">小课表 · 界面预览</h1>
+<div class="sub" data-page-node-id="XaA466cUVMUnKc2FklFBG9">「小课表」微信小程序静态视觉稿（示例数据）。实际效果请在微信开发者工具中导入项目运行。</div>
+
+<div class="frames" data-page-node-id="BvtCrBOq1jSLlXkdrFU2jB">
+  <!-- 今日 -->
+  <div data-page-node-id="hO7lmPJVpETxGy9DdHomlw">
+    <div class="phone" data-page-node-id="eGzHl8b60UGjQogazQE20F">
+      <div class="nav" data-page-node-id="cjM0xuEu7ZpPs4CVg4o8PA">小课表</div>
+      <div class="content" data-page-node-id="QLj4ZAlEQaT4aJLoRgkpHa">
+        <div class="hero" data-page-node-id="5kXtur7NMcVdj4n1ATxGc3">
+          <div data-page-node-id="DYVp8f5nVfZloNY7pBXxon"><div class="d" data-page-node-id="LobjRMoAbD3KUx9y4YsQxA">9 月 7 日</div><div class="s" data-page-node-id="iPiyasujMTF3XszZBuS92M">周一 · 第 1 周</div></div>
+          <div class="badge" data-page-node-id="TvvBpuGFdbDtPOikaWwrFU">今日</div>
+        </div>
+        <div class="banner" data-page-node-id="jQ73chSpGcEYLGhpHA4b3E">正在上课：大学英语 @ 外语楼 105</div>
+        <div class="cc dimmed" data-page-node-id="pv3CIIibRTuFWcEGB8rrSn"><div class="bar" style="background:#4C7DFF" data-page-node-id="qNIOpFQXLPMjpFK4enJKBn"></div><div class="m" data-page-node-id="nE15DQKu0YxL94xRW2wjDL"><div class="n" data-page-node-id="eLOfjejEAL7deZeLNwX6M8">高等数学</div><div class="meta dim" data-page-node-id="l6K5eCoSl3sinVTMs6CFed">08:00 - 09:50 · 第1-2节</div><div class="meta dim" data-page-node-id="ObCaeoQ6qQHv0fXjSSTCXa">教三 302 · 王立群</div></div><div class="st done" data-page-node-id="dCsq0CDppY7J5eEnMA3mu6">已结束</div></div>
+        <div class="cc" data-page-node-id="XpBwFlixKVceTjOr4kxWAt"><div class="bar" style="background:#00B578" data-page-node-id="vJeyPShKkKRRGzPMFBFvDY"></div><div class="m" data-page-node-id="bq70dk5sEfg5AfOfQKm9Y4"><div class="n" data-page-node-id="V8c3yhEnqFz6TYz1q8dNUe">大学英语</div><div class="meta" data-page-node-id="F2FU2HFkpfpJR9u7TMnM7i">10:10 - 12:00 · 第3-4节</div><div class="meta dim" data-page-node-id="ZKNLDDczu0Bq15Jt0sB6ux">外语楼 105 · 李梅</div></div><div class="st doing" data-page-node-id="9BIi8wZde5vIhdUs2vboYn">上课中</div></div>
+        <div class="cc" data-page-node-id="p66CB5bCqdNVz1YlVmqph3"><div class="bar" style="background:#9C6BFF" data-page-node-id="AWyqdKiDgLan9kJG2ObvPQ"></div><div class="m" data-page-node-id="VNVpADRYZF5HwPUQSTKcVY"><div class="n" data-page-node-id="jZaEXINAaT4m2GylfHpDwL">数据结构</div><div class="meta" data-page-node-id="uwZfgHNBbVAlf95Bl0vWMC">19:00 - 20:50 · 第9-10节</div><div class="meta dim" data-page-node-id="JmMDCYwrSEGWpWFuggaT5m">机房 B201 · 张伟</div></div><div class="st before" data-page-node-id="DyfdGBxMH7Jr06TDyyAgsx">5 小时后</div></div>
+        <div class="link" data-page-node-id="Gi89vkmgLwTxBZw79Uj2rI">查看整周课表 ›</div>
+        <div class="fab" data-page-node-id="0Qx9nI44GJq0gICMzUJUE0">+</div>
+      </div>
+      <div class="tabbar" data-page-node-id="53AH1TeaeyyzWbpek0bJtd">
+        <div class="tab active" data-page-node-id="si8UIkDmwsZkjSV239SUrE"><span class="ico clock" data-page-node-id="5SxhMESHhOtMk5FwK97cHu"></span>今日</div>
+        <div class="tab" data-page-node-id="0DASIlKplci21POM5UwIiQ"><span class="ico cal" data-page-node-id="OMYU88foFRaBANNhx3xTEg"></span>课程表</div>
+        <div class="tab" data-page-node-id="H7lfgYLVlSklDelhmT9wUn"><span class="ico gear" data-page-node-id="Bjk6UWu0Epuisauc5knUAv"></span>设置</div>
+      </div>
+    </div>
+    <div class="frame-label" data-page-node-id="v5Y3tG5M1e6TG2M2fxGi0B">今日 · 日期 + 课程状态 + 提醒横幅</div>
+  </div>
+
+  <!-- 周课表 -->
+  <div data-page-node-id="IzwBk3yH3IcYlwYvlD3fmz">
+    <div class="phone" data-page-node-id="Xdozjtxbi3rrmrZJDrAQQ4">
+      <div class="nav" data-page-node-id="1oWulCMFAOpHEUWKwEnb4d">课程表</div>
+      <div class="content" data-page-node-id="u9l55ADSaDaX7HkX7a0fOC">
+        <div class="wkhead" data-page-node-id="funbNpc5Zi2l96qnmfwdSK">
+          <div data-page-node-id="Erf9X8ZiDENYFGYQzfQ0fg"><div class="t" data-page-node-id="xBTgcgyYW7IbaU8mJSMtiE">第 1 周</div><div class="r" data-page-node-id="Z90APKmyPX1kELIIBc6SAN">8/31 - 9/6</div></div>
+          <div class="add" data-page-node-id="HuPmJKjGGyJ6GBm7uW1pCA">+</div>
+        </div>
+        <div class="grid" data-page-node-id="26AZHg0trNrsOsQ5hV4RJo">
+          <div class="days" data-page-node-id="K4qyulOpgTjbfxQaHax0lf">
+            <div class="corner" data-page-node-id="eotFeYR0X6OsiuABBESWQB"></div>
+            <div class="dayh today" data-page-node-id="FTnWp96qCoiad2BW1yMDdG"><div class="dn" data-page-node-id="T1RFyphOobCPM1NgsocdNE">周一</div><div class="dd" data-page-node-id="BPhTyR3HG9OFSy147iYDO4">8/31</div></div>
+            <div class="dayh" data-page-node-id="PaIg2AUjadp6NFFBOb1jW0"><div class="dn" data-page-node-id="AUTszKznpOVOShYNx6I0RI">周二</div><div class="dd" data-page-node-id="bQVECcn5swnSv0lqMJgdZK">9/1</div></div>
+            <div class="dayh" data-page-node-id="camcKkWqMgEiKJyZuUXrtJ"><div class="dn" data-page-node-id="cXVki9ZlRe7UbFOQxHwPtp">周三</div><div class="dd" data-page-node-id="uCGvA1MXwZBwFxtDQra1WO">9/2</div></div>
+            <div class="dayh" data-page-node-id="65O42cEN0F5CsxEQ8H6Y2z"><div class="dn" data-page-node-id="CXKNOJuoUKTk59hjsJ0LEj">周四</div><div class="dd" data-page-node-id="QbBDCjfSWzKuZ1mtzECR7F">9/3</div></div>
+            <div class="dayh" data-page-node-id="aZX5mDz1SElfvP7oMRGp7i"><div class="dn" data-page-node-id="yCHnuSeK84hH33yEVXmKLH">周五</div><div class="dd" data-page-node-id="m0DQAT2YO9msOefMM9D1vG">9/4</div></div>
+            <div class="dayh" data-page-node-id="k7daSFR7UiLlr3kybCC36C"><div class="dn" data-page-node-id="VV2NgtmNJ85WEcojtwZLDp">周六</div><div class="dd" data-page-node-id="VNGWJU8rkNY76AfYYDF53o">9/5</div></div>
+            <div class="dayh" data-page-node-id="3BCFT6VGSI4yw5Ejwi8e9W"><div class="dn" data-page-node-id="eHoicOSD30gwsNAsr0NZlg">周日</div><div class="dd" data-page-node-id="FBZExbpfSv145rpCwzVODo">9/6</div></div>
+          </div>
+          <div class="wkbody" data-page-node-id="mKpF3Ba0dkVLYyljfPNilG">
+            <div class="times" data-page-node-id="q6Ey8pvFL6wIcZde2CyIWb">
+              <div class="tcell" data-page-node-id="bBBDP8veYBZsvTz4mZ8B7r"><div class="tn" data-page-node-id="KyHXDLobeibsO2CAQKTDfz">1</div><div class="tt" data-page-node-id="04NsmNOFCIdCM5QSwFDPej">08:00</div></div>
+              <div class="tcell" data-page-node-id="r4Tqs3optzWGELq8Np3pWy"><div class="tn" data-page-node-id="ZYbUPBs28YU0M5ADfRWLhd">2</div><div class="tt" data-page-node-id="QKBl4sFFvOsLTFaBeNzbuA">09:00</div></div>
+              <div class="tcell" data-page-node-id="FxT1cGhAihVZRROwgASQvS"><div class="tn" data-page-node-id="FSqXhAiirJl4okVEuUVyWk">3</div><div class="tt" data-page-node-id="EXRkK6FrtBHZqC7UGC2jQ1">10:10</div></div>
+              <div class="tcell" data-page-node-id="Gopa1fWCzMHpGYazikRFD3"><div class="tn" data-page-node-id="nEMKRRbiMquxsMUgciedHq">4</div><div class="tt" data-page-node-id="FhbhTn65igEOsYhcLfScO2">11:10</div></div>
+              <div class="tcell" data-page-node-id="Y4mlGa0w3YYzJwNLUCueEE"><div class="tn" data-page-node-id="ohGbMbMj1YlaNHFdLhTnpM">5</div><div class="tt" data-page-node-id="4UTmj0m5utaojYXccB7F4A">14:00</div></div>
+              <div class="tcell" data-page-node-id="uDCvDZtoBb4N7n6tRuKsds"><div class="tn" data-page-node-id="fcf4p8srcP7MWqdCAgJoZz">6</div><div class="tt" data-page-node-id="dBvLyqyQNNqbkZrhRBdHfK">15:00</div></div>
+              <div class="tcell" data-page-node-id="LcB1kp4HMLCmrbEEEiTlVW"><div class="tn" data-page-node-id="fmctNVZCoEiR04qSbLBz0L">7</div><div class="tt" data-page-node-id="3rNqmSA56OKx1Epf4MHvTy">16:10</div></div>
+              <div class="tcell" data-page-node-id="uao4QvDSqsJwtF3KmunixN"><div class="tn" data-page-node-id="zeTP02yoVOiKRwTMDTGoN0">8</div><div class="tt" data-page-node-id="QmgPVTrmWQ0pnFl0YfA63A">17:10</div></div>
+              <div class="tcell" data-page-node-id="6DLvpGWjjkeyNuIL9VIoK2"><div class="tn" data-page-node-id="YvLHwhETnG4zRqEszCoBap">9</div><div class="tt" data-page-node-id="UCweCHKhpIGaj6mwA1isid">19:00</div></div>
+              <div class="tcell" data-page-node-id="qys5pcAXUL6CvxJB6sVOmR"><div class="tn" data-page-node-id="mtSbpReXCQtHrMfk010o2F">10</div><div class="tt" data-page-node-id="udzmP9jwVbxQqdbDCTZVNY">20:00</div></div>
+              <div class="tcell" data-page-node-id="RQwqk3ffLJH8Qk6xVSVLtd"><div class="tn" data-page-node-id="QrHZiFTiEwzXe8gHlKuUSe">11</div><div class="tt" data-page-node-id="GSC4k8fyaS5g211d6idTZ0">21:00</div></div>
+            </div>
+            <div class="cols" data-page-node-id="PzF40tpafDs34QYRSvBAAk">
+              <div class="col today" data-page-node-id="NzofKdsgx5qy3Nm11mb5uL">
+                <div class="blk" style="top:0;height:100px;background:#4C7DFF" data-page-node-id="0asskAZ9CYXCOTvL0QxgRw"><div class="bn" data-page-node-id="TlPDwo6HSOCI3dnqLn3wTX">高等数学</div><div class="bl" data-page-node-id="XB5Fc1jJW8sw9zxWdC7fYq">教三 302</div></div>
+                <div class="blk" style="top:104px;height:100px;background:#00B578" data-page-node-id="4rt0UuPlNF8O0Gx5zAe7yL"><div class="bn" data-page-node-id="eH94ChyxyOvlhAjdjJyNpX">大学英语</div><div class="bl" data-page-node-id="eHS98gIJKKj8SQcgtkoBJN">外语楼 105</div></div>
+                <div class="blk" style="top:416px;height:100px;background:#9C6BFF" data-page-node-id="UgCjG6gUReXD7neKFKW2BT"><div class="bn" data-page-node-id="1AZSofDDE823p8Lp2hlIkn">数据结构</div><div class="bl" data-page-node-id="6qtO58G7axvBAY4Fsugggx">机房 B201</div></div>
+              </div>
+              <div class="col" data-page-node-id="mtN1DDgJBb2XaT7tAjEEXu"></div>
+              <div class="col" data-page-node-id="p5SwmavU72W33L3XQoECDO">
+                <div class="blk" style="top:208px;height:100px;background:#FA5151" data-page-node-id="jKh8XwLYglKRAA68Zt3Dsk"><div class="bn" data-page-node-id="LiJTumZzjRGp6pOWlWGioX">大学物理</div><div class="bl" data-page-node-id="rm2SIMWz2GmhG1Pod3uoc1">教一 201</div></div>
+                <div class="blk" style="top:364px;height:100px;background:#FF7D4D" data-page-node-id="KN6zD76E2mcvNEa1A913MX"><div class="bn" data-page-node-id="MB2pCGvH4vUokD8Muz8R71">程序设计实践</div><div class="bl" data-page-node-id="7CfLry4pHNYd5DYJR4ke9k">机房 A305</div></div>
+              </div>
+              <div class="col" data-page-node-id="5AnxTgtZCpvCjBsfbh3lJm"></div>
+              <div class="col" data-page-node-id="X3SgpfWaElyH5FcBRUVjIK">
+                <div class="blk" style="top:0;height:100px;background:#FFAA15" data-page-node-id="puusXqo6fdS9CbgbH8pjVK"><div class="bn" data-page-node-id="MPtTxEaDP8r7tlhCnrkYDg">线性代数</div><div class="bl" data-page-node-id="Rilj4JMWGr7rBaA9XM3zdq">教三 108</div></div>
+                <div class="blk" style="top:312px;height:100px;background:#F76FA6" data-page-node-id="onZbX7REkZAIl3fbpMzLfu"><div class="bn" data-page-node-id="AkUcA5eLMTb5Y6N32bCPny">体育</div><div class="bl" data-page-node-id="84z6xOMj0XeeMs7wOoA26J">田径场</div></div>
+              </div>
+              <div class="col" data-page-node-id="GrB5g5PJ8Fp8sI38v8Qhyz"></div>
+              <div class="col" data-page-node-id="iG0EaSCXIfkgVXDWx3Qxpd"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tabbar" data-page-node-id="IfTrgwZa1qlTjdVl6gGwlv">
+        <div class="tab" data-page-node-id="w6EFtNO5QqVUbWhC6tCDHs"><span class="ico clock" data-page-node-id="Z6FYMZpwEkYfTy2s1S7Vcc"></span>今日</div>
+        <div class="tab active" data-page-node-id="fLAK9qjCroMZWwvOHbBmrw"><span class="ico cal" data-page-node-id="FavF3PgL3bxhO34gyevszS"></span>课程表</div>
+        <div class="tab" data-page-node-id="20bhKte6R3UdJnGcTLA0Iw"><span class="ico gear" data-page-node-id="6abdBMjuxJ282aAsVhp2No"></span>设置</div>
+      </div>
+    </div>
+    <div class="frame-label" data-page-node-id="2rmpNXZ1HqLKN5Iuw25Bcr">周课表 · 每列显示日期，长按空白列可快速添加</div>
+  </div>
+
+  <!-- 添加课程 -->
+  <div data-page-node-id="mEtFOWHj9ySMnmHD0Z2jxC">
+    <div class="phone" data-page-node-id="4RaNf4gw38cL7IyhBUeI1E">
+      <div class="nav" data-page-node-id="41mDarHupJk3hW6q5z4U1u">添加课程</div>
+      <div class="content" data-page-node-id="wEBIX1f0FwkxGTMFn2ThdS">
+        <div class="form" data-page-node-id="a01Ds91zn2YlYZs58i80aZ">
+          <div class="cell" data-page-node-id="cCRp8qEcsYTgOlBKIsYBEh"><div class="lb" data-page-node-id="bBoIBDZ9q5qiAX2n24l5UA">课程名称</div><div class="val" data-page-node-id="hUCqqcncpl667wVySuUfsX">高等数学</div></div>
+          <div class="cell" data-page-node-id="2diVS5BJ9o3pentkht6Pbf"><div class="lb" data-page-node-id="IFnSsZ5cLiDDfDHqORXCeK">老师</div><div class="val ph" data-page-node-id="lz9wWPaBAyMul4Nee7Qs0U">选填</div></div>
+          <div class="cell" data-page-node-id="GnUYxkisMuqlwmQapPT0z8"><div class="lb" data-page-node-id="J0qEgpst8Xcrr41gGB42JE">地点</div><div class="val" data-page-node-id="awvWVH0vtf8ti6kHKi404z">教三 302</div></div>
+          <div class="cell" data-page-node-id="GppsaRlA0KcvW4nPWeAy3H"><div class="lb" data-page-node-id="AqfGGxNnLBwzw5GQF6vJYG">星期</div><div class="val" data-page-node-id="HYrfItDnmfbBxdhXMYyElk">周一</div></div>
+          <div class="cell" data-page-node-id="InGgYjADqTTRA1jjFlZ1ug"><div class="lb" data-page-node-id="QFASgYghskGME64MGu2FqN">节次</div><div class="val" data-page-node-id="aWgHE3QGo3rNHdovEIz5m3">第 1 - 2 节 · 08:00 - 09:50</div></div>
+          <div class="wk" data-page-node-id="tTpqaHfbUmH4D83E0hn1BS">
+            <div class="tt" data-page-node-id="674PNWUkntrwTdvlrQ7V52">上课周次（点选自由组合）</div>
+            <div class="quick" data-page-node-id="UdWgjE1fRA2pBHGoT1mNa2"><span data-page-node-id="RjieQxjP6LyJgEqwDEUeD6">1-16周</span><span data-page-node-id="o3ulJ5L0PFUt2W8EM7HTFx">全选</span><span data-page-node-id="pl28WAtWVK6I3HPKAaA8eo">单周</span><span data-page-node-id="iH8yquYUCmfPZPhZRUZBcg">双周</span><span data-page-node-id="ct8eccOPH9cLbBtcHe0gKO">清空</span></div>
+            <div class="chips" data-page-node-id="VYc3sRGxG9JJhgDjtOJy8Z">
+              <span class="on" data-page-node-id="LwmPI4EIIow5sC48JuFCrm">1</span><span class="on" data-page-node-id="wN2Q5ABP0lJiefFngqfrdo">2</span><span class="on" data-page-node-id="chBt54xw1hZ2Bk1SwrZ33k">3</span><span class="on" data-page-node-id="GNRwnyZT7LB9sAmf5VTSCN">4</span><span class="on" data-page-node-id="kLIqJBUxpfdzijpmGAiDzM">5</span><span class="on" data-page-node-id="LZLJfKpJtoo0p07MqXRkXb">6</span><span class="on" data-page-node-id="dE7p728ugic9V14iwlxJvJ">7</span><span class="on" data-page-node-id="wV4ItkhJybENtkxupbx22N">8</span><span class="on" data-page-node-id="pxtj8gkTVfWtYtBBBNhiRo">9</span><span class="on" data-page-node-id="uqgAwfSNrS5jQKDspdwAR9">10</span><span class="on" data-page-node-id="jik6k5FcSeB5rmxXwJOL4m">11</span><span class="on" data-page-node-id="YCW9DZWOFb24t3dKN5ODON">12</span><span class="on" data-page-node-id="ZBW28JgdF5AUGRiuM0qFBF">13</span><span class="on" data-page-node-id="E0dkBsC1Gw09jEBuAiJrNu">14</span><span class="on" data-page-node-id="lH1sFiZYhhF19aZHW15F2z">15</span><span class="on" data-page-node-id="pa0ikjATpvBywfz34r6KpI">16</span><span data-page-node-id="aKwVKKkHi7f5XrRuZ01vC6">17</span><span data-page-node-id="74TbMGmMrS6X1bAUrFjGpy">18</span><span data-page-node-id="FqE2RqLrg4eaqMzY9oMNzA">19</span><span data-page-node-id="zRcgSyhzn7JRGEjFEc2SuF">20</span><span data-page-node-id="5a9AB1doZmOAnLTP6QrEIb">21</span><span data-page-node-id="MRUKkVPfbGmXE03F19wQ0W">22</span><span data-page-node-id="ucx1XrnGcAAwieGHKexnsa">23</span><span data-page-node-id="8SQm1Gjnjhyfxaze1uchlt">24</span><span data-page-node-id="glMeqoZlSR8nRXBg7OPFDU">25</span>
+            </div>
+            <div class="prev" data-page-node-id="lGWikzWimjkQJKecWAKxAA">第 1-16 周</div>
+          </div>
+          <div class="cell" data-page-node-id="nvrpPlEfLaYa5t0VpC5hmE">
+            <div class="lb" data-page-node-id="QpleGIGGAqd83Wj46wpOak">颜色</div>
+            <div class="sw" data-page-node-id="vEFhuPh3K24jn8aInJbUHy">
+              <i style="background:#4C7DFF;outline:2px solid #fff;box-shadow:0 0 0 2px #4C7DFF" data-page-node-id="wTHo2U9PahxZCvgqcHgXwT"></i>
+              <i style="background:#00B578" data-page-node-id="HHBa3BH4fMV2sGbn491y3P"></i>
+              <i style="background:#FFAA15" data-page-node-id="ypax4FNyP63akTzCUEhRQ9"></i>
+              <i style="background:#FA5151" data-page-node-id="HyK8hlRTx6AqBndPGGlNQg"></i>
+              <i style="background:#9C6BFF" data-page-node-id="YUS8D2l0vAwJc4jSwOmIyx"></i>
+              <i style="background:#00A6C7" data-page-node-id="DigX6TM62otfZSFHUXK4if"></i>
+              <i style="background:#FF7D4D" data-page-node-id="dsueSbIZ1pXrKGoZn8BCTU"></i>
+              <i style="background:#F76FA6" data-page-node-id="gsuEoo3lvYpD4PR7IiBuiC"></i>
+              <i style="background:#7CB518" data-page-node-id="QdkQo72Em9St0LTj0Dw1rq"></i>
+              <i style="background:#5A6B87" data-page-node-id="9IqzhcWHsytI9m1KmFj7Ht"></i>
+            </div>
+          </div>
+        </div>
+        <div class="savebtn" data-page-node-id="EQPxxMNhVL8zUAdXm5QxUK">保存课程</div>
+      </div>
+    </div>
+    <div class="frame-label" data-page-node-id="XZ8HIrs73fqhDkVyAAzVxo">添加课程 · 周次一键多选（1-16周 / 全选 / 单周 / 双周 / 自由点选）</div>
+  </div>
+</div>
+
+<div class="note" data-page-node-id="XmJ9UciZz7784iXFJx1LxN">
+  <b data-page-node-id="MGVFk0QkB9zkzmDPH0KPX6">运行方式：</b>打开微信开发者工具 → 导入项目 → 选择文件夹 C:\Users\zz\Desktop\小课表 → AppID 选「测试号」即可预览。<br  data-page-node-id="tDDu26A7v6TSpF62wybb5i"/>
+  <b data-page-node-id="zAa1WbAQ3DfCH05bsPnQD7">已实现：</b>手动添加课程、周次一键多选（全选/单周/双周/1-16周/自由点选）、周课表网格与日期显示、今日课程状态（上课中/倒计时/已结束）、应用内上课提醒、节次时间自定义、数据导出导入。
+</div>
+</body>
+</html>

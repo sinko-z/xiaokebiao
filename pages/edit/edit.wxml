@@ -1,0 +1,78 @@
+<view class="page">
+  <view class="card form">
+    <view class="cell">
+      <view class="cell-label">课程名称</view>
+      <input class="cell-input" value="{{name}}" bindinput="inputName" placeholder="如：高等数学" maxlength="20" />
+    </view>
+    <view class="cell">
+      <view class="cell-label">老师</view>
+      <input class="cell-input" value="{{teacher}}" bindinput="inputTeacher" placeholder="选填" />
+    </view>
+    <view class="cell">
+      <view class="cell-label">地点</view>
+      <input class="cell-input" value="{{location}}" bindinput="inputLocation" placeholder="如：教三 302" />
+    </view>
+
+    <picker class="cell" mode="selector" range="{{dayOptions}}" value="{{dayIdx}}" bindchange="onDay">
+      <view class="cell-label">星期</view>
+      <view class="cell-value">{{dayOptions[dayIdx]}}</view>
+    </picker>
+    <picker class="cell" mode="selector" range="{{sectionOptions}}" value="{{startSection - 1}}" bindchange="onStartSection">
+      <view class="cell-label">开始节次</view>
+      <view class="cell-value">{{sectionOptions[startSection - 1]}}</view>
+    </picker>
+    <picker class="cell" mode="selector" range="{{sectionOptions}}" value="{{endSection - 1}}" bindchange="onEndSection">
+      <view class="cell-label">结束节次</view>
+      <view class="cell-value">{{sectionOptions[endSection - 1]}}</view>
+    </picker>
+    <view class="cell">
+      <view class="cell-label">上课时间</view>
+      <view class="cell-value preview">{{timePreview}}</view>
+    </view>
+
+    <view class="week-block">
+      <view class="week-title">上课周次（点选自由组合）</view>
+      <view class="week-quick">
+        <view class="quick-btn" bindtap="weeksRange16">1-16周</view>
+        <view class="quick-btn" bindtap="weeksAll">全选</view>
+        <view class="quick-btn" bindtap="weeksOdd">单周</view>
+        <view class="quick-btn" bindtap="weeksEven">双周</view>
+        <view class="quick-btn" bindtap="weeksClear">清空</view>
+      </view>
+      <view class="chips">
+        <view
+          class="chip {{item.on ? 'on' : ''}}"
+          wx:for="{{weekChips}}"
+          wx:key="n"
+          data-w="{{item.n}}"
+          bindtap="toggleWeek"
+        >{{item.n}}</view>
+      </view>
+      <view class="week-preview">{{weeksPreview}}</view>
+    </view>
+
+    <view class="cell color-cell">
+      <view class="cell-label">颜色</view>
+      <view class="swatches">
+        <view
+          class="swatch {{index === colorIdx ? 'active' : ''}}"
+          wx:for="{{colors}}"
+          wx:key="*this"
+          style="background: {{item}};"
+          data-i="{{index}}"
+          bindtap="pickColor"
+        >
+          <view wx:if="{{index === colorIdx}}" class="check"></view>
+        </view>
+      </view>
+    </view>
+
+    <view class="cell note-cell">
+      <view class="cell-label">备注</view>
+      <textarea class="note-area" value="{{note}}" bindinput="inputNote" placeholder="选填，如：需要带实验报告" maxlength="60" auto-height></textarea>
+    </view>
+  </view>
+
+  <view class="save-btn" bindtap="save">保存课程</view>
+  <view wx:if="{{isEdit}}" class="del-btn" bindtap="remove">删除这门课</view>
+</view>
