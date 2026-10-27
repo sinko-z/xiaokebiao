@@ -1,6 +1,7 @@
 // 课表数据的本地存储（仅本地，不上传）
 const COURSES_KEY = 'kb_courses_v1';
 const SETTINGS_KEY = 'kb_settings_v1';
+const TODOS_KEY = 'kb_todos_v1';
 
 // 课程卡片配色
 const COLORS = [
@@ -88,6 +89,56 @@ function removeCourse(id) {
   saveCourses(getCourses().filter(function (c) { return c.id !== id; }));
 }
 
+// 每日待办（按日期分组，仅本地）
+function getAllTodos() {
+  try {
+    const all = wx.getStorageSync(TODOS_KEY);
+    if (all && typeof all === 'object') return all;
+  } catch (e) {}
+  return {};
+}
+
+function getTodos(date) {
+  const all = getAllTodos();
+  return Array.isArray(all[date]) ? all[date] : [];
+}
+
+function saveTodos(date, list) {
+  const all = getAllTodos();
+  all[date] = list || [];
+  wx.setStorageSync(TODOS_KEY, all);
+}
+
+function addTodo(date, text) {
+  const list = getTodos(date);
+  const todo = { id: uid(), text: text, done: false, createdAt: Date.now() };
+  list.push(todo);
+  saveTodos(date, list);
+  return todo;
+}
+
+function toggleTodo(date, id) {
+  const list = getTodos(date);
+  const t = list.find(function (x) { return x.id === id; });
+  if (t) {
+    t.done = !t.done;
+    saveTodos(date, list);
+  }
+  return list;
+}
+
+function removeTodo(date, id) {
+  const list = getTodos(date).filter(function (x) { return x.id !== id; });
+  saveTodos(date, list);
+  return list;
+}
+
+function clearDoneTodos(date) {
+  const list = getTodos(date).filter(function (x) { return !x.done; });
+  saveTodos(date, list);
+  return list;
+}
+
 // 示例课表（首次体验用）
 function loadDemoCourses() {
   function range(s, e) {
@@ -137,6 +188,12 @@ module.exports = {
   saveCourses: saveCourses,
   upsertCourse: upsertCourse,
   removeCourse: removeCourse,
+  getTodos: getTodos,
+  saveTodos: saveTodos,
+  addTodo: addTodo,
+  toggleTodo: toggleTodo,
+  removeTodo: removeTodo,
+  clearDoneTodos: clearDoneTodos,
   loadDemoCourses: loadDemoCourses,
   uid: uid
 };

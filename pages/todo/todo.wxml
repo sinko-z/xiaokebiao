@@ -1,0 +1,47 @@
+<view class="page">
+  <view class="hero">
+    <view>
+      <view class="hero-date">{{dateText}}</view>
+      <view class="hero-sub">{{weekCn}} · 每日待办</view>
+    </view>
+    <view class="hero-badge">{{doneCount}} / {{todos.length}}</view>
+  </view>
+
+  <view class="add-card">
+    <input
+      class="add-input"
+      value="{{inputText}}"
+      placeholder="添加今天要做的事"
+      placeholder-class="add-ph"
+      confirm-type="done"
+      bindinput="onInput"
+      bindconfirm="onAdd"
+    />
+    <view class="add-btn {{inputText ? 'is-on' : ''}}" bindtap="onAdd">添加</view>
+  </view>
+
+  <block wx:if="{{todos.length}}">
+    <view class="progress">
+      <view class="progress-fill" style="width: {{percent}}%;"></view>
+    </view>
+    <view class="progress-text">已完成 {{doneCount}} / {{todos.length}}{{percent === 100 ? '，今天全部搞定！' : ''}}</view>
+
+    <view class="todo-list">
+      <view class="todo-item {{item.done ? 'is-done' : ''}}" wx:for="{{todos}}" wx:key="id">
+        <view class="todo-check {{item.done ? 'is-checked' : ''}}" data-id="{{item.id}}" bindtap="toggle">
+          <view wx:if="{{item.done}}" class="todo-tick"></view>
+        </view>
+        <view class="todo-text" data-id="{{item.id}}" bindtap="toggle">{{item.text}}</view>
+        <view class="todo-del" data-id="{{item.id}}" bindtap="remove">×</view>
+      </view>
+    </view>
+
+    <view wx:if="{{doneCount}}" class="clear-done" bindtap="clearDone">清除已完成（{{doneCount}}）</view>
+  </block>
+
+  <view wx:else class="card empty">
+    <view class="empty-ring"></view>
+    <view class="empty-title">今天还没有待办</view>
+    <view class="empty-sub">写下一件小事，从第一条开始</view>
+  </view>
+</view>

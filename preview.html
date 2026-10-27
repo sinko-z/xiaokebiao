@@ -24,6 +24,21 @@
   .ico.cal::before { content: ''; position: absolute; left: 2px; right: 2px; top: 5px; height: 2px; background: currentColor; }
   .ico.gear { border: 2.5px solid currentColor; border-radius: 50%; }
   .ico.gear::before { content: ''; position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px 0 0 -3px; background: currentColor; border-radius: 50%; }
+  .ico.list { border: 2.5px solid currentColor; border-radius: 4px; }
+  .ico.list::before { content: ''; position: absolute; left: 3px; top: 4px; width: 4px; height: 2px; background: currentColor; box-shadow: 0 5px 0 currentColor; }
+  .ico.list::after { content: ''; position: absolute; left: 9px; top: 4px; width: 6px; height: 2px; background: currentColor; box-shadow: 0 5px 0 currentColor; }
+  .addrow { display: flex; align-items: center; background: #fff; border-radius: 14px; padding: 8px 8px 8px 14px; margin-top: 10px; box-shadow: 0 2px 10px rgba(31,36,48,.05); }
+  .addrow .inp { flex: 1; color: #B6BCC8; font-size: 15px; }
+  .addrow .go { background: #4C7DFF; color: #fff; border-radius: 16px; padding: 7px 16px; font-size: 14px; }
+  .prog { height: 6px; background: #E6EBF5; border-radius: 4px; margin-top: 14px; overflow: hidden; }
+  .prog i { display: block; height: 100%; background: linear-gradient(90deg, #4C7DFF, #6FA0FF); border-radius: 4px; }
+  .progtx { font-size: 12px; color: #8A93A6; margin-top: 6px; }
+  .td { display: flex; align-items: center; background: #fff; border-radius: 10px; padding: 13px 12px; margin-top: 8px; box-shadow: 0 2px 10px rgba(31,36,48,.05); }
+  .td .rd { width: 20px; height: 20px; border: 2px solid #CCD3E0; border-radius: 50%; flex-shrink: 0; }
+  .td .rd.on { background: #4C7DFF; border-color: #4C7DFF; }
+  .td .tx { flex: 1; font-size: 15px; margin: 0 10px; }
+  .td.on .tx { color: #9AA1AE; text-decoration: line-through; }
+  .td .dl { color: #C0C6D1; font-size: 20px; }
 
   .hero { background: linear-gradient(135deg, #4C7DFF, #6FA0FF); color: #fff; border-radius: 16px; padding: 20px 18px; display: flex; justify-content: space-between; align-items: center; }
   .hero .d { font-size: 22px; font-weight: 600; }
@@ -111,11 +126,38 @@
       </div>
       <div class="tabbar" data-page-node-id="53AH1TeaeyyzWbpek0bJtd">
         <div class="tab active" data-page-node-id="si8UIkDmwsZkjSV239SUrE"><span class="ico clock" data-page-node-id="5SxhMESHhOtMk5FwK97cHu"></span>今日</div>
+        <div class="tab" data-page-node-id="todoTab001"><span class="ico list" data-page-node-id="todoIco001"></span>待办</div>
         <div class="tab" data-page-node-id="0DASIlKplci21POM5UwIiQ"><span class="ico cal" data-page-node-id="OMYU88foFRaBANNhx3xTEg"></span>课程表</div>
         <div class="tab" data-page-node-id="H7lfgYLVlSklDelhmT9wUn"><span class="ico gear" data-page-node-id="Bjk6UWu0Epuisauc5knUAv"></span>设置</div>
       </div>
     </div>
     <div class="frame-label" data-page-node-id="v5Y3tG5M1e6TG2M2fxGi0B">今日 · 日期 + 课程状态 + 提醒横幅</div>
+  </div>
+
+  <!-- 每日待办 -->
+  <div data-page-node-id="todoFrame001">
+    <div class="phone" data-page-node-id="todoPhone001">
+      <div class="nav" data-page-node-id="todoNav001">每日待办</div>
+      <div class="content" data-page-node-id="todoContent001">
+        <div class="hero" data-page-node-id="todoHero001">
+          <div data-page-node-id="todoHeroL001"><div class="d" data-page-node-id="todoDate001">10 月 27 日</div><div class="s" data-page-node-id="todoWeek001">周二 · 每日待办</div></div>
+          <div class="badge" data-page-node-id="todoBadge001">1 / 3</div>
+        </div>
+        <div class="addrow" data-page-node-id="todoAdd001"><div class="inp" data-page-node-id="todoInp001">添加今天要做的事</div><div class="go" data-page-node-id="todoGo001">添加</div></div>
+        <div class="prog" data-page-node-id="todoProg001"><i style="width:33%" data-page-node-id="todoProgF001"></i></div>
+        <div class="progtx" data-page-node-id="todoProgTx001">已完成 1 / 3</div>
+        <div class="td" data-page-node-id="todoItem001"><div class="rd" data-page-node-id="todoRd001"></div><div class="tx" data-page-node-id="todoTx001">预习高数第 3 章</div><div class="dl" data-page-node-id="todoDl001">×</div></div>
+        <div class="td" data-page-node-id="todoItem002"><div class="rd" data-page-node-id="todoRd002"></div><div class="tx" data-page-node-id="todoTx002">交实验报告</div><div class="dl" data-page-node-id="todoDl002">×</div></div>
+        <div class="td on" data-page-node-id="todoItem003"><div class="rd on" data-page-node-id="todoRd003"></div><div class="tx" data-page-node-id="todoTx003">英语单词打卡</div><div class="dl" data-page-node-id="todoDl003">×</div></div>
+      </div>
+      <div class="tabbar" data-page-node-id="todoTabbar001">
+        <div class="tab" data-page-node-id="todoTabToday001"><span class="ico clock" data-page-node-id="todoIcoToday001"></span>今日</div>
+        <div class="tab active" data-page-node-id="todoTabList001"><span class="ico list" data-page-node-id="todoIcoList001"></span>待办</div>
+        <div class="tab" data-page-node-id="todoTabWeek001"><span class="ico cal" data-page-node-id="todoIcoWeek001"></span>课程表</div>
+        <div class="tab" data-page-node-id="todoTabSet001"><span class="ico gear" data-page-node-id="todoIcoSet001"></span>设置</div>
+      </div>
+    </div>
+    <div class="frame-label" data-page-node-id="todoLabel001">每日待办 · 按日期记录，勾选即完成</div>
   </div>
 
   <!-- 周课表 -->
@@ -176,6 +218,7 @@
       </div>
       <div class="tabbar" data-page-node-id="IfTrgwZa1qlTjdVl6gGwlv">
         <div class="tab" data-page-node-id="w6EFtNO5QqVUbWhC6tCDHs"><span class="ico clock" data-page-node-id="Z6FYMZpwEkYfTy2s1S7Vcc"></span>今日</div>
+        <div class="tab" data-page-node-id="todoTab002"><span class="ico list" data-page-node-id="todoIco002"></span>待办</div>
         <div class="tab active" data-page-node-id="fLAK9qjCroMZWwvOHbBmrw"><span class="ico cal" data-page-node-id="FavF3PgL3bxhO34gyevszS"></span>课程表</div>
         <div class="tab" data-page-node-id="20bhKte6R3UdJnGcTLA0Iw"><span class="ico gear" data-page-node-id="6abdBMjuxJ282aAsVhp2No"></span>设置</div>
       </div>
@@ -227,7 +270,7 @@
 
 <div class="note" data-page-node-id="XmJ9UciZz7784iXFJx1LxN">
   <b data-page-node-id="MGVFk0QkB9zkzmDPH0KPX6">运行方式：</b>打开微信开发者工具 → 导入项目 → 选择文件夹 C:\Users\zz\Desktop\小课表 → AppID 选「测试号」即可预览。<br  data-page-node-id="tDDu26A7v6TSpF62wybb5i"/>
-  <b data-page-node-id="zAa1WbAQ3DfCH05bsPnQD7">已实现：</b>手动添加课程、周次一键多选（全选/单周/双周/1-16周/自由点选）、周课表网格与日期显示、今日课程状态（上课中/倒计时/已结束）、应用内上课提醒、节次时间自定义、数据导出导入。
+  <b data-page-node-id="zAa1WbAQ3DfCH05bsPnQD7">已实现：</b>手动添加课程、周次一键多选（全选/单周/双周/1-16周/自由点选）、周课表网格与日期显示、今日课程状态（上课中/倒计时/已结束）、每日待办清单、应用内上课提醒、节次时间自定义、数据导出导入。
 </div>
 </body>
 </html>

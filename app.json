@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/today/today",
+    "pages/todo/todo",
     "pages/week/week",
     "pages/settings/settings",
     "pages/edit/edit"
@@ -23,6 +24,12 @@
         "text": "今日",
         "iconPath": "assets/tabbar/today.png",
         "selectedIconPath": "assets/tabbar/today-active.png"
+      },
+      {
+        "pagePath": "pages/todo/todo",
+        "text": "待办",
+        "iconPath": "assets/tabbar/todo.png",
+        "selectedIconPath": "assets/tabbar/todo-active.png"
       },
       {
         "pagePath": "pages/week/week",

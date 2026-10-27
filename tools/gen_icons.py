@@ -39,6 +39,18 @@ def icon_today(color):
     return img
 
 
+def icon_todo(color):
+    """待办清单"""
+    img, d = canvas()
+    x0, y0, x1, y1 = 15 * SS, 12 * SS, 66 * SS, 69 * SS
+    d.rounded_rectangle([x0, y0, x1, y1], radius=8 * SS, outline=color, width=5 * SS)
+    for gy in (27 * SS, 42 * SS, 57 * SS):
+        d.line([21 * SS, gy, 26 * SS, gy + 5 * SS], fill=color, width=4 * SS)
+        d.line([26 * SS, gy + 5 * SS, 34 * SS, gy - 5 * SS], fill=color, width=4 * SS)
+        d.line([41 * SS, gy - 1 * SS, 59 * SS, gy - 1 * SS], fill=color, width=4 * SS)
+    return img
+
+
 def icon_week(color):
     """课程表"""
     img, d = canvas()
@@ -76,7 +88,7 @@ def icon_settings(color):
 
 def main():
     os.makedirs(OUT, exist_ok=True)
-    for name, fn in (('today', icon_today), ('week', icon_week), ('settings', icon_settings)):
+    for name, fn in (('today', icon_today), ('todo', icon_todo), ('week', icon_week), ('settings', icon_settings)):
         save(fn(GRAY), name + '.png')
         save(fn(BLUE), name + '-active.png')
 

@@ -1,0 +1,185 @@
+.page {
+  padding: 24rpx 24rpx 200rpx;
+}
+
+.hero {
+  background: linear-gradient(135deg, #4C7DFF 0%, #6FA0FF 100%);
+  border-radius: 28rpx;
+  padding: 36rpx 32rpx;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-date {
+  font-size: 40rpx;
+  font-weight: 600;
+}
+
+.hero-sub {
+  font-size: 26rpx;
+  opacity: 0.85;
+  margin-top: 8rpx;
+}
+
+.hero-badge {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 24rpx;
+  padding: 8rpx 24rpx;
+  font-size: 24rpx;
+}
+
+.add-card {
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 16rpx 16rpx 16rpx 28rpx;
+  margin-top: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(31, 36, 48, 0.05);
+}
+
+.add-input {
+  flex: 1;
+  height: 64rpx;
+  font-size: 30rpx;
+}
+
+.add-ph {
+  color: #B6BCC8;
+}
+
+.add-btn {
+  flex-shrink: 0;
+  margin-left: 16rpx;
+  background: #E6EBF5;
+  color: #9AA1AE;
+  border-radius: 32rpx;
+  padding: 14rpx 32rpx;
+  font-size: 28rpx;
+}
+
+.add-btn.is-on {
+  background: #4C7DFF;
+  color: #FFFFFF;
+}
+
+.progress {
+  height: 12rpx;
+  background: #E6EBF5;
+  border-radius: 8rpx;
+  margin-top: 28rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4C7DFF 0%, #6FA0FF 100%);
+  border-radius: 8rpx;
+  transition: width 0.25s;
+}
+
+.progress-text {
+  font-size: 24rpx;
+  color: #8A93A6;
+  margin-top: 12rpx;
+}
+
+.todo-list {
+  margin-top: 16rpx;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 26rpx 24rpx;
+  margin-top: 16rpx;
+  box-shadow: 0 4rpx 20rpx rgba(31, 36, 48, 0.05);
+}
+
+.todo-item.is-done {
+  background: #FBFCFE;
+}
+
+.todo-check {
+  width: 40rpx;
+  height: 40rpx;
+  border: 3rpx solid #CCD3E0;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo-check.is-checked {
+  background: #4C7DFF;
+  border-color: #4C7DFF;
+}
+
+.todo-tick {
+  width: 16rpx;
+  height: 8rpx;
+  border-left: 4rpx solid #FFFFFF;
+  border-bottom: 4rpx solid #FFFFFF;
+  transform: rotate(-45deg) translate(1rpx, -2rpx);
+}
+
+.todo-text {
+  flex: 1;
+  font-size: 30rpx;
+  line-height: 1.4;
+  margin: 0 20rpx;
+  word-break: break-all;
+}
+
+.is-done .todo-text {
+  color: #9AA1AE;
+  text-decoration: line-through;
+}
+
+.todo-del {
+  flex-shrink: 0;
+  width: 52rpx;
+  height: 52rpx;
+  color: #C0C6D1;
+  font-size: 40rpx;
+  line-height: 48rpx;
+  text-align: center;
+}
+
+.clear-done {
+  margin-top: 32rpx;
+  text-align: center;
+  color: #8A93A6;
+  font-size: 26rpx;
+  padding: 16rpx 0;
+}
+
+.empty {
+  margin-top: 20rpx;
+  padding: 80rpx 40rpx;
+  text-align: center;
+}
+
+.empty-ring {
+  width: 96rpx;
+  height: 96rpx;
+  border: 10rpx solid #E3E9FF;
+  border-radius: 50%;
+  margin: 0 auto 28rpx;
+}
+
+.empty-title {
+  color: #8A93A6;
+  font-size: 28rpx;
+}
+
+.empty-sub {
+  color: #B6BCC8;
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
